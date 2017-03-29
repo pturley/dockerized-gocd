@@ -1,0 +1,20 @@
+version: "2"
+services:
+  go-configurer:
+    build: gocd-configurer
+    volumes:
+      - ./gocd-configurer:/var/run/gomatic
+    links:
+      - go-server
+  go-server:
+    image: gocd/gocd-server
+    restart: always
+    ports:
+      - '8153:8153'
+  go-agent:
+    build: agent
+    restart: always
+    environment:
+      - GO_SERVER_URL=https://go-server:8154/go
+    links:
+      - go-server
