@@ -1,4 +1,4 @@
-# dockerized-ci
+# dockerized-gocd
 
 This is an example repository for setting up a dockerized CI server using GoCD.
 
